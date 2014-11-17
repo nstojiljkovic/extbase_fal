@@ -1,0 +1,53 @@
+	config.tx_extbase {
+		persistence {
+			classes {
+				EssentialDots\ExtbaseFal\Domain\Model\AbstractFile {
+					mapping {
+						tableName = sys_file
+						columns {
+							metadata {
+								config {
+									type = select
+									foreign_table = sys_file_metadata
+									foreign_field = file
+									#MM =
+									maxitems = 999
+									multiple = 1
+								}
+							}
+						}
+					}
+				}
+
+				EssentialDots\ExtbaseFal\Domain\Model\File {
+					mapping {
+						tableName = sys_file
+					}
+				}
+
+				EssentialDots\ExtbaseFal\Domain\Model\FileMetaData {
+					mapping {
+						tableName = sys_file_metadata
+					}
+				}
+
+				EssentialDots\ExtbaseFal\Domain\Model\AbstractFileReference {
+					mapping {
+						tableName = sys_file_reference
+						columns {
+							uid_local.mapOnProperty = file
+						}
+					}
+				}
+
+				EssentialDots\ExtbaseFal\Domain\Model\FileReference {
+					mapping {
+						tableName = sys_file_reference
+						columns {
+							uid_local.mapOnProperty = file
+						}
+					}
+				}
+			}
+		}
+	}
