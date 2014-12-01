@@ -24,7 +24,6 @@ namespace EssentialDots\ExtbaseFal\Domain\Model;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-use TYPO3\CMS\Core\Resource\File;
 
 /**
  * Class File
