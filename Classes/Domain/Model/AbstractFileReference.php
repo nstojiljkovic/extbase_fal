@@ -31,6 +31,6 @@ namespace EssentialDots\ExtbaseFal\Domain\Model;
  * @package EssentialDots\ExtbaseFal\Domain\Model
  * @author Nikola Stojiljkovic
  */
-class AbstractFileReference extends \EssentialDots\ExtbaseDomainDecorator\DomainObject\AbstractEntity {
+abstract class AbstractFileReference extends \EssentialDots\ExtbaseDomainDecorator\DomainObject\AbstractEntity {
 
 }
