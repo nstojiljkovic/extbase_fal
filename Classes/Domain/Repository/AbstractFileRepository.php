@@ -40,7 +40,7 @@ abstract class AbstractFileRepository extends \EssentialDots\ExtbaseDomainDecora
 	protected function getEnabledFields($tableName = '') {
 		if ($tableName == 'sys_file' && $this->getDoNotRespectEnableFields()) {
 			$statement = '';
-		} elseif (TYPO3_MODE === 'FE') {
+		} elseif (TYPO3_MODE === 'FE' && $GLOBALS['TSFE'] && $GLOBALS['TSFE']->sys_page) {
 			$statement = $GLOBALS['TSFE']->sys_page->enableFields($tableName);
 		} else {
 			// TYPO3_MODE === 'BE'
