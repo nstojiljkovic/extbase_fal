@@ -36,7 +36,9 @@ class File extends AbstractFile {
 	/**
 	 * @var \TYPO3\CMS\Core\Resource\ResourceInterface|\TYPO3\CMS\Core\Resource\File|\TYPO3\CMS\Core\Resource\AbstractFile
 	 */
-	protected $fileObject;
+	// @codingStandardsIgnoreStart
+	protected $_fileObject;
+	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var string
@@ -355,10 +357,24 @@ class File extends AbstractFile {
 	 * @return \TYPO3\CMS\Core\Resource\ResourceInterface|\TYPO3\CMS\Core\Resource\File|\TYPO3\CMS\Core\Resource\AbstractFile
 	 */
 	public function getFileObject() {
-		if (!$this->fileObject) {
-			$this->fileObject = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance()->getFileObject($this->getUid());
+		if (!$this->_fileObject) {
+			$row = $this->getDatabaseConnection()->exec_SELECTgetSingleRow(
+				'*',
+				'sys_file',
+				'uid=' . (int) $this->getUid()
+			);
+			$this->_fileObject = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance()->getFileObject($this->getUid(), $row);
 		}
-		return $this->fileObject;
+		return $this->_fileObject;
+	}
+
+	/**
+	 * Gets database instance
+	 *
+	 * @return \TYPO3\CMS\Core\Database\DatabaseConnection
+	 */
+	protected function getDatabaseConnection() {
+		return $GLOBALS['TYPO3_DB'];
 	}
 
 	/**
