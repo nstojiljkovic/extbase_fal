@@ -54,9 +54,10 @@ class FileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 
 	/**
 	 * @param array $arguments
-	 * @param callable $renderChildrenClosure
+	 * @param \Closure $renderChildrenClosure
 	 * @param \TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface $renderingContext
 	 * @return mixed|null|object|string
+	 *
 	 * @throws \TYPO3\CMS\Core\Resource\Exception\InvalidFileException
 	 * @throws \TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException
 	 */

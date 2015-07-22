@@ -51,7 +51,7 @@ class Folder extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $files;
 
 	/**
-	 * @param null $decoratedObject
+	 * @param null $folderObject
 	 */
 	public function __construct($folderObject = NULL) {
 		$this->folderObject = $folderObject;
