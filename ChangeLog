@@ -1,3 +1,11 @@
+Version: 0.2.3
+Subject: [TASK] Add option to define kb/mb/gb labels
+Date:    2016-08-29 21:17:06 +0200
+Gitweb:  https://gerrit.essentialdots.com/gitweb?p=TYPO3CMS/Extensions/extbase_fal.git;a=commit;h=3e2ca2fb22e1ef781bd60cd868dcb76e8277b78e
+
+Change-Id: Ic46742678866222c5c5b67e5fc98c75ffb8c9443
+Related: #TP-4125
+
 Version: 0.2.2
 Subject: [TASK] Add format.size viewhelper
 Date:    2016-08-29 18:40:05 +0200
