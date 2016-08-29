@@ -1,0 +1,6 @@
+Version: 0.2.1
+Subject: [TASK] Update TYPO3 core dependency
+Date:    2016-08-29 11:17:32 +0200
+Gitweb:  https://gerrit.essentialdots.com/gitweb?p=TYPO3CMS/Extensions/extbase_fal.git;a=commit;h=d4ce08caa4d048638b1f0580ea6fe233d9489fa2
+
+Change-Id: I1862e114c08e1c7156ddb3d610a9077ffa4ad3d9
