@@ -1,3 +1,11 @@
+Version: 0.2.2
+Subject: [TASK] Add format.size viewhelper
+Date:    2016-08-29 18:40:05 +0200
+Gitweb:  https://gerrit.essentialdots.com/gitweb?p=TYPO3CMS/Extensions/extbase_fal.git;a=commit;h=ffc8683a382b723425351b20620e67a879c9c966
+
+Change-Id: I6c9fb3d9979747ee8bb7496622c42880c828d9e2
+Related: #TP-4125
+
 Version: 0.2.1
 Subject: [TASK] Update TYPO3 core dependency
 Date:    2016-08-29 11:17:32 +0200
