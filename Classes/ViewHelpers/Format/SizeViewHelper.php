@@ -37,9 +37,10 @@ class SizeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 	/**
 	 * Get size from file
 	 *
-	 * @return integer File size
+	 * @param string $labels
+	 * @return string
 	 */
-	public function render() {
-		return GeneralUtility::formatSize((int) $this->renderChildren());
+	public function render($labels = ' | KB| MB| GB') {
+		return GeneralUtility::formatSize((int) $this->renderChildren(), $labels);
 	}
 }
