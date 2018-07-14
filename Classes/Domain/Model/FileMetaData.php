@@ -67,7 +67,7 @@ class FileMetaData extends \EssentialDots\ExtbaseDomainDecorator\DomainObject\Ab
 	/**
 	 * categories
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
 	 */
 	protected $categories;
 
@@ -107,7 +107,7 @@ class FileMetaData extends \EssentialDots\ExtbaseDomainDecorator\DomainObject\Ab
 	/**
 	 * Returns the categories
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> $categories
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> $categories
 	 */
 	public function getCategories() {
 		return $this->categories;

@@ -41,10 +41,11 @@ class FileUploadInfoViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\Abstrac
 
 	/**
 	 * @param string $returnField
-	 * @return string
+	 * @return mixed|string
+	 * @throws \TYPO3\CMS\Core\Resource\Exception\InvalidFileException
 	 */
 	public function render($returnField = 'uid') {
-		$value = $this->getValue();
+		$value =  $this->arguments['value'];
 
 		if ($value) {
 			$file = $this->fileRepository->findByUid($value);

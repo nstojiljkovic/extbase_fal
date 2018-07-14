@@ -114,7 +114,7 @@ class File extends AbstractFile {
 	/**
 	 * metadata
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<\EssentialDots\ExtbaseFal\Domain\Model\FileMetaData>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\EssentialDots\ExtbaseFal\Domain\Model\FileMetaData>
 	 */
 	protected $metadata;
 
@@ -152,7 +152,7 @@ class File extends AbstractFile {
 	}
 
 	/**
-	 * @return Tx_Extbase_Persistence_ObjectStorage<\EssentialDots\ExtbaseFal\Domain\Model\FileMetaData> $metadata
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\EssentialDots\ExtbaseFal\Domain\Model\FileMetaData> $metadata
 	 */
 	public function getMetadata() {
 		return $this->metadata;

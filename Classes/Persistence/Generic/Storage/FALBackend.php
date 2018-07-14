@@ -28,6 +28,12 @@ namespace EssentialDots\ExtbaseFal\Persistence\Generic\Storage;
 use TYPO3\CMS\Extbase\Persistence\Generic\Qom\Statement;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
+use Doctrine\DBAL\DBALException;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom;
+use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Exception\SqlErrorException;
+use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
+
 /**
  * A persistence backend. This backend maps objects to the relational model of the storage backend.
  * It persists all added, removed and changed objects.
@@ -136,11 +142,45 @@ class FALBackend extends \TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbB
 	 * @return array
 	 */
 	public function getObjectDataByQuery(QueryInterface $query) {
-		$statement = $query->getStatement();
-		if ($statement instanceof Statement) {
-			$rows = $this->getObjectDataByRawQuery($statement);
+		if (version_compare(TYPO3_version, '8.7.0', '>=')) {
+			$statement = $query->getStatement();
+			if ($statement instanceof \TYPO3\CMS\Extbase\Persistence\Generic\Qom\Statement
+				&& !$statement->getStatement() instanceof \TYPO3\CMS\Core\Database\Query\QueryBuilder
+			) {
+				$rows = $this->getObjectDataByRawQuery($statement);
+			} else {
+				$queryParser = $this->objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser::class);
+				if ($statement instanceof \TYPO3\CMS\Extbase\Persistence\Generic\Qom\Statement
+					&& $statement->getStatement() instanceof \TYPO3\CMS\Core\Database\Query\QueryBuilder
+				) {
+					$queryBuilder = $statement->getStatement();
+				} else {
+					$queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
+				}
+				$selectParts = $queryBuilder->getQueryPart('select');
+				if ($queryParser->isDistinctQuerySuggested() && !empty($selectParts)) {
+					$selectParts[0] = 'DISTINCT ' . $selectParts[0];
+					$queryBuilder->selectLiteral(...$selectParts);
+				}
+				if ($query->getOffset()) {
+					$queryBuilder->setFirstResult($query->getOffset());
+				}
+				if ($query->getLimit()) {
+					$queryBuilder->setMaxResults($query->getLimit());
+				}
+				try {
+					$rows = $queryBuilder->execute()->fetchAll();
+				} catch (\Doctrine\DBAL\DBALException $e) {
+					throw new \TYPO3\CMS\Extbase\Persistence\Generic\Storage\Exception\SqlErrorException($e->getPrevious()->getMessage(), 1472074485);
+				}
+			}
 		} else {
-			$rows = $this->getRowsByStatementParts($query);
+			$statement = $query->getStatement();
+			if ($statement instanceof Statement) {
+				$rows = $this->getObjectDataByRawQuery($statement);
+			} else {
+				$rows = $this->getRowsByStatementParts($query);
+			}
 		}
 
 		foreach ($rows as $row) {
