@@ -1,3 +1,11 @@
+Version: 0.2.4
+Subject: [TASK] TYPO3 8.7 compatibility update
+Date:    2018-07-24 13:04:35 +0200
+Gitweb:  https://gerrit.essentialdots.com/gitweb?p=TYPO3CMS/Extensions/extbase_fal.git;a=commit;h=e9f55010c998a3be15e3e4f679dd3e1bf49856cd
+
+Change-Id: I8972be0f832e85cc30f95b9ded8e18ea1a279827
+Related: #TP-4725
+
 Version: 0.2.3
 Subject: [TASK] Add option to define kb/mb/gb labels
 Date:    2016-08-29 21:17:06 +0200
